@@ -1,0 +1,65 @@
+<div class="col-md-6">
+<div class="well" [@list1]>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th *ngIf="authService.departmentAccess > 1">Location</th>
+        <th *ngIf="authService.departmentAccess > 1">Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dept of departmentList">
+        <td>{{dept.Id}}</td>
+        <td>{{dept.Name | titlecase}}</td>
+        
+        <td>{{dept.Location | titlecase}}</td>
+      
+        <td *ngIf="authService.departmentAccess > 1"><a class="btn btn-success btn-sm" (click)="OnEditClick(dept.Id)">Edit</a> </td>
+        <td *ngIf="authService.departmentAccess > 1"><a class="btn btn-danger btn-sm" (click)="OnDeleteClick(dept.Id)">Delete</a></td>
+      </tr>
+  
+    </tbody>
+  </table> 
+</div>
+</div>
+
+<div class="row align-items-center">
+
+<div class="col-md-6">
+  
+    <div class="well align-items-center" [@AnimateTab] *ngIf="authService.departmentAccess > 1">
+       <h4 class="text-center"> Enter Department Details</h4>
+      
+  <form class="form" [formGroup]="createDeptForm">
+    <div class="form-group">
+      <label  for="name">Department Name:</label>
+      <input type="text" formControlName="dname" required class="form-control" id="dname">
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" formControlName="dlocation" required class="form-control" id="dlocation">
+    </div>
+    
+    <div class="btn-toolbar text-center well">
+    <button type="button" *ngIf="activeEmpId===0" [disabled]="!createDeptForm.valid" class="btn btn-success" (click)="OnAddClick()" >Add Department</button>
+    
+    <button type="button" *ngIf="!(activeEmpId===0)" class="btn btn-success" [disabled]="!createDeptForm.valid" (click)="OnUpdateClick()" >Update Employee</button>
+
+    <button type="button"  class="btn btn-info" (click)="createDeptForm.reset()" >Cancel</button>
+    
+  </div>
+  </form>
+</div>
+<div class="alert alert-success alert-dismissible"  [hidden]="responseStatus">
+    <a (click)="CloseAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> {{ message }}.
+
+  </div>
+
+
+  
+</div>
+</div>

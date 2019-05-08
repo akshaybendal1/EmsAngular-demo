@@ -1,0 +1,99 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" (click)="onMenuClick()">EMS</a>
+
+    </div>
+    <ul *ngIf="authService.isAuthenticated()" class="nav navbar-nav">
+      <li routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}"><a routerLink=''>Home</a></li>
+      <li routerLinkActive='active'><a routerLink='employee' *ngIf="authService.employeeAccess > 0"><span
+            class="glyphicon glyphicon-user"> </span>&nbsp; Employee</a></li>
+      <li routerLinkActive='active'><a routerLink='department' *ngIf="authService.departmentAccess > 0"><span
+            class="glyphicon glyphicon-home"></span> &nbsp; Department</a></li>
+      <li routerLinkActive='active'><a routerLink='employeeDataTable' *ngIf="authService.employeeAccess > 0"><span
+            class="glyphicon glyphicon-list-alt"> </span> &nbsp; Employee-DataTable</a></li>
+      <li routerLinkActive='active'><a routerLink='employee1' *ngIf="authService.employeeAccess > 0"> <span
+            class="glyphicon glyphicon-book"></span> &nbsp; Employee all</a></li>
+      <li routerLinkActive='active'><a routerLink='MaterialAddEmployee'> <span class="glyphicon glyphicon-file"></span>
+          &nbsp; Material-Employee</a></li>
+      <li routerLinkActive='active'><a routerLink='Home2'> <span class="glyphicon glyphicon-file"></span> &nbsp;
+          Home2</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li routerLinkActive='active' *ngIf="authService.isAuthenticated()"><a (click)="OnLogoutClick()"
+          class="btn btn-link"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      <li routerLinkActive='active' *ngIf="!authService.isAuthenticated()"><a routerLink='register'><span
+            class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li routerLinkActive='active' *ngIf="!authService.isAuthenticated()"><a routerLink='login'><span
+            class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <strong>User Details</strong>
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+       
+ 
+   Username : {{authService.username}}
+   <br>
+   Role : {{ authService.userRole}}
+<br>
+        </mat-expansion-panel>
+
+
+</mat-accordion> -->
+<!-- <div class="well">
+   {{authService.employeeAccess > 1}}
+    {{authService.employeeAccess}} 
+  <strong>User Details</strong>
+  <br>
+   Username : {{authService.username}}
+   <br>
+   Role : {{ authService.userRole}}
+<br>
+employeeAccess {{this.authService.employeeAccess }}
+departmentAccess {{this.authService.departmentAccess }}
+</div> -->
+<div class="row">
+  <div class="col-md-12">
+
+  
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer drawer class="example-sidenav" mode="side">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <mat-nav-list role="list">
+            <mat-list-item role="listitem"><a routerLink='/employee'><span class="glyphicon glyphicon-user">
+                </span>&nbsp;
+                Employee</a></mat-list-item>
+            <mat-list-item role="listitem"><a routerLink='/department'><span
+                  class="glyphicon glyphicon-home"></span>&nbsp;
+                Department</a></mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+          </mat-nav-list>
+        </div>
+      </nav>
+
+    </mat-drawer>
+
+    <div class="example-sidenav-content" style="max-height:800px;margin:10px">
+      <router-outlet>
+
+      </router-outlet>
+    </div>
+
+  </mat-drawer-container>
+
+  <!-- <div class="col-md-10">
+      <DIV style="margin:10px">
+         
+        </DIV>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.ng-invalid.ng-touched {
+    border-color : red;
+}
+/* .mat-snack-bar-container {
+width: 100% !important;
+ }
+*/
+ .mat-simple-snackbar {
+    display: flex; 
+    color:blue;
+    font-size: 28px !important;
+    min-height: 70px !important; 
+    align-items: center !important;
+    justify-content: center !important;
+  } 

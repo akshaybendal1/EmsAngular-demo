@@ -1,0 +1,18 @@
+<div class="row">
+  <!-- <div class="col-md-6"><app-employee [parentemployeeList]="employeeList"></app-employee></div>
+  <div class="col-md-6"><app-new-employee (getChanges)="getEventChildEvent()" ></app-new-employee></div> -->
+
+  <div class="col-md-6">
+    <app-employee [parentemployeeList]="employeeList">
+    <div  class="well" [@AnimateTab]>
+    <strong> Enter text to search : </strong> 
+  <input class="form-control" type="text" (input)="OnFilterClick($event)">
+    </div>
+  </app-employee>
+</div>
+  <div class="col-md-6"><app-new-employee (getChanges)="getEventChildEvent()" ></app-new-employee></div>
+
+</div>
+
+
+

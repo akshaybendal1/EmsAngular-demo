@@ -1,0 +1,14 @@
+table {
+    width: 96%;margin: 2%;
+  }
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  th{
+      text-align: center;
+  }
+  .example-full-width {
+    width: 96%;
+    margin: 16px;
+  }
+  

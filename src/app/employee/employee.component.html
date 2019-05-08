@@ -1,0 +1,62 @@
+<ng-content></ng-content>
+    <div >
+      
+
+      <div class="alert alert-success alert-dismissible" [hidden]="responseStatus">
+
+        <a (click)="CloseAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ message }}.
+
+      </div>
+
+      <div class="alert alert-warning alert-dismissible" [hidden]="responseStatusError">
+
+        <a (click)="CloseAlertError()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{ message }}.
+
+      </div>
+
+      <div *ngIf="employeeList.length === 0" class="alert alert-warning">
+        Loading.....Please wait
+      </div>
+      <div class="well" *ngIf="employeeList.length > 0" [@list1]>
+         
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th (click)="sort($event)">Id</th>
+              <th (click)="sort($event)">Name</th>
+              <th (click)="sort($event)">Department</th>
+              <th (click)="sort($event)">Location</th>
+              <th (click)="sort($event)">Salary</th>
+              <th *ngIf="authService.employeeAccess > 1" >Edit</th>
+              <th *ngIf="authService.employeeAccess > 1" >Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp1 of employeeList | paginate: { itemsPerPage: 5, currentPage: p }" >
+              <td>{{emp1.Id}}</td>
+              <td>{{emp1.Name | titlecase}}</td>
+              <td>{{emp1.DeptId }}</td>
+              <td>{{emp1.Location | titlecase}}</td>
+              <td>{{emp1.Salary | currency : 'INR' }}</td>
+              <td *ngIf="authService.employeeAccess > 1" ><a class="btn btn-success btn-sm" (click)="OnEditClick(emp1.Id)"  >Edit</a> </td>
+              <td *ngIf="authService.employeeAccess > 1" > <a class="btn btn-danger btn-sm" (click)="OnDeleteClick(emp1.Id)">Delete</a></td>
+            </tr>
+
+
+
+          </tbody>
+         
+        
+         
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <a class="btn btn-info"  (click)="addClick()" >Add Employee</a>
+        
+        <!-- <ul class="list-group">
+      <li class="list-group-item" (click)="OnDeleteClick(emp.Id)"  []  *ngFor="let emp of employeeList" >{{emp.Name }}</li>
+    </ul>  -->
+      </div>
+    </div>
+   

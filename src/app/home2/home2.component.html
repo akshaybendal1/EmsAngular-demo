@@ -1,0 +1,18 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-list role="list">
+      <mat-list-item role="listitem"><a routerLink='/employee'><span class="glyphicon glyphicon-user"> </span>&nbsp;
+          Employee</a></mat-list-item>
+      <mat-list-item role="listitem"><a routerLink='/department'><span class="glyphicon glyphicon-home"></span>&nbsp;
+          Department</a></mat-list-item>
+      <mat-list-item role="listitem">Item 3</mat-list-item>
+    </mat-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="max-height:800px">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>

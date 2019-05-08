@@ -1,0 +1,41 @@
+
+<div class="row align-items-center" *ngIf="authService.employeeAccess > 1">
+    
+  <div class="col-md-12">
+    
+      <div class="well align-items-center" [@AnimateTab]>
+         <h4 class="text-center"> Enter Employee Details</h4>
+        
+    <form class="form" [formGroup]="createEmpForm">
+      <div class="form-group">
+        <label  for="name">Employee Name:</label>
+        <input type="text" formControlName="name" required class="form-control" id="name">
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" formControlName="location" required class="form-control" id="location">
+      </div>
+      <div class="form-group">
+        <label for="salary">Salary:</label>
+        <input type="number" formControlName="salary" required class="form-control" id="salary">
+      </div>
+      <div class="form-group">
+        <label for="deptid">Department:</label>
+        <input type="number" formControlName="deptid" required class="form-control" id="deptid">
+      </div>
+      <div class="btn-toolbar text-center well">
+      <button type="button" *ngIf="activeEmpId===0" [disabled]="!createEmpForm.valid" class="btn btn-success" (click)="OnAddClick()" >Add Employee</button>
+      
+      <button type="button" *ngIf="!(activeEmpId===0)" class="btn btn-success" [disabled]="!createEmpForm.valid" (click)="OnUpdateClick()" >Update Employee</button>
+  
+      <button type="button"  class="btn btn-info" (click)="OnCancelClick()" >Cancel</button>
+      <a class="btn btn-info pull-right margin-left" routerLink='/employee'>View All Employees</a>
+    </div>
+    </form>
+  </div>
+  <div class="alert alert-success alert-dismissible"  [hidden]="!responseStatus">
+      <a (click)="CloseAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Success!</strong> {{ message }}.
+    </div>
+  </div>
+  </div>
